@@ -1,0 +1,73 @@
+root: true
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+  tsconfigRootDir: './'
+  project:
+    - './tsconfig.json'
+    - './packages/*/tsconfig.json'
+
+extends:
+  - prettier
+  - 'plugin:@typescript-eslint/recommended'
+
+plugins:
+  - import
+  - '@typescript-eslint'
+
+globals:
+  fetch: false
+  __DEV__: readonly
+  JSX: true
+
+env:
+  jest: true
+
+rules:
+  # React Rules
+  react/react-in-jsx-scope: off
+  react/prop-types: 0
+  react/no-unused-prop-types: 0
+  react/no-unused-state: 0
+  react/forbid-prop-types: [0, { forbid: [] }]
+  react/require-default-props: off
+
+  # Import Rules
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies: true
+      optionalDependencies: false
+      peerDependencies: false
+  import/prefer-default-export: off
+  implicit-arrow-linebreak: off
+
+  # General Rules
+  semi:
+    - error
+    - never
+  comma-dangle: off
+  no-unused-vars: off
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: '^_'
+      varsIgnorePattern: '^_'
+  operator-linebreak:
+    - error
+    - before
+    - overrides:
+        '=': ignore
+  no-console: 2
+  no-plusplus: off
+  no-nested-ternary: off
+  arrow-body-style: off
+  consistent-return: off
+  curly:
+    - error
+    - all
+
+  # Unnecessary ts-eslint rules for a primarily storybook repo
+  '@typescript-eslint/no-empty-function': off # This rule is nice, but it is not worth the annoyance when mocking story functions that you do not want to use actions for.
+  '@typescript-eslint/no-var-requires': off # This rule is just a pain
+  # '@typescript-eslint/no-explicit-any': off # This rule is nice, but not for a repo with so many storybook types that aren't beneficial to type (aka StoryFn)
+  '@typescript-eslint/explicit-module-boundary-types': off # This rule is nice, but not for a repo with so many stories that do not benefit from having an explicit return type
