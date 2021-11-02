@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "gen": "graphql-codegen --config codegen.yml -r dotenv/config"
+    "gen": "graphql-codegen --config codegen.yml -r dotenv/config && yarn prettier --write 'src/__generated__/graphql.ts'"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -48,6 +48,7 @@
     "@graphql-codegen/typescript": "2.3.0",
     "@graphql-codegen/typescript-operations": "2.2.0",
     "@graphql-codegen/typescript-react-query": "3.1.0",
+    "@mswjs/data": "^0.7.0",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
@@ -62,9 +63,14 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "msw": "^0.35.0",
+    "msw-storybook-addon": "^1.4.1",
     "prettier": "^2.4.1"
   },
   "resolutions": {
     "babel-loader": "8.1.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

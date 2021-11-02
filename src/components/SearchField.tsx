@@ -44,7 +44,7 @@ export const SearchField = () => {
               // prettier-ignore
               !isEmpty(result?.node)
               // @ts-expect-error -- we are checking is result.node is empty or nullish
-              && !isNil(result?.node) && <Text key={result.node.name}>Name: {result.node.name}</Text>
+              && !isNil(result?.node) && <Text key={`${result.node.name}-${result?.node.owner.login}`}>Name: {result.node.name}</Text>
           )}
         </Flex>
       )}
