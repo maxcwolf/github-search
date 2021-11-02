@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "theme-ui" // prevents us from using jsx pragma on all tsx files
   },
-  "include": ["src", "public/mockServiceWorker.js"]
+  "include": ["src", "public/mockServiceWorker.js", ".storybook"]
 }

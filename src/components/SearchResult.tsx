@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import { Card, Flex, Text } from 'theme-ui'
 
 export type Repo = {

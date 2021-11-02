@@ -1,8 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import { BehaviorSubject, Subject, Observable, from } from 'rxjs'
-import { render } from '@testing-library/react'
+import { BehaviorSubject, Subject, Observable } from 'rxjs'
 import { useObservable, useLayoutObservable } from '../useObservable'
-import { createElement } from 'react'
 
 const setUp = <T,>(observable: Observable<T>, initialValue?: T) =>
   renderHook(() => useObservable(observable, initialValue))
