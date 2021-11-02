@@ -1,0 +1,23 @@
+overwrite: true
+schema: 'https://docs.github.com/public/schema.docs.graphql'
+documents: 'src/**/*.graphql'
+generates:
+  src/__generated__/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+    config:
+      skipTypename: true
+      fetcher:
+        endpoint: 'https://api.github.com/graphql'
+        isReactHook: true
+        fetchParams: >
+          {
+            headers: {
+              "Authorization": `Bearer ${process.env.REACT_APP_GITHUB_KEY}`
+            }
+          }
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'
