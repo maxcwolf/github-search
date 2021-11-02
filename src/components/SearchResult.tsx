@@ -6,6 +6,10 @@ export type Repo = {
   starCount: number
 }
 
+/**
+ * @description SearchResult component - displays individual search results
+ *  with minimal information, and can be clicked to bring user to the Details page.
+ */
 export const SearchResult = ({ name = '', ownerName = '', starCount }: Repo) => (
   <Card
     key={`${name}-${ownerName}`}

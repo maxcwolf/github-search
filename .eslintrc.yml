@@ -63,6 +63,7 @@ rules:
     - warn
     - argsIgnorePattern: '^_'
       varsIgnorePattern: '^_'
+  operator-linebreak: off
   no-console: off
   no-plusplus: off
   no-nested-ternary: off
