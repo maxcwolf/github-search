@@ -11,6 +11,8 @@ parserOptions:
 extends:
   - prettier
   - 'plugin:@typescript-eslint/recommended'
+  - react-app
+  - react-app/jest
 
 plugins:
   - import
@@ -23,6 +25,12 @@ globals:
 
 env:
   jest: true
+
+overrides:
+  - files:
+      - '**/*.stories.*'
+    rules:
+      import/no-anonymous-default-export: 'off'
 
 rules:
   # React Rules
@@ -44,12 +52,12 @@ rules:
 
   # General Rules
   semi:
-    - error
+    - warn
     - never
   comma-dangle: off
   no-unused-vars: off
   '@typescript-eslint/no-unused-vars':
-    - error
+    - warn
     - argsIgnorePattern: '^_'
       varsIgnorePattern: '^_'
   operator-linebreak:
