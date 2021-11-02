@@ -1,12 +1,13 @@
-import { useEffect, useState, useRef, ChangeEvent } from 'react'
-import { Flex, Input, Label, Text, Spinner } from 'theme-ui'
-import { isEmpty, isNil } from 'ramda'
-import { useGetReposQuery } from '../__generated__/graphql'
+import { useEffect, useRef, ChangeEvent } from 'react'
+import { BehaviorSubject } from 'rxjs'
+import { Flex, Input, Label } from 'theme-ui'
+import { useObservable } from '../hooks/useObservable'
+
+export const input$ = new BehaviorSubject('')
+const toInput = input$.next.bind(input$)
 
 export const SearchField = () => {
-  const [input, setInput] = useState<string>('')
-  const { data, isLoading } = useGetReposQuery({ search_term: input })
-
+  const input = useObservable(input$)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   // Focus search input on init render
@@ -15,7 +16,7 @@ export const SearchField = () => {
   }, [])
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value)
+    toInput(event.target.value)
   }
   return (
     <Flex sx={{ flexDirection: 'column' }}>
@@ -32,22 +33,6 @@ export const SearchField = () => {
         ref={inputRef}
       />
       {/* TODO: Add toast message when error */}
-      {isLoading ? (
-        <Flex sx={{ justifyContent: 'center', alignContent: 'center' }}>
-          <Spinner />
-        </Flex>
-      ) : (
-        <Flex sx={{ flexDirection: 'column' }}>
-          <Text>Repository Count: {data?.search.repositoryCount}</Text>
-          {data?.search.edges?.map(
-            result =>
-              // prettier-ignore
-              !isEmpty(result?.node)
-              // @ts-expect-error -- we are checking is result.node is empty or nullish
-              && !isNil(result?.node) && <Text key={`${result.node.name}-${result?.node.owner.login}`}>Name: {result.node.name}</Text>
-          )}
-        </Flex>
-      )}
     </Flex>
   )
 }

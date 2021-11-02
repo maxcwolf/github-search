@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { Search } from '../Search'
 
 export default {
@@ -6,4 +7,10 @@ export default {
   title: 'Pages/Search',
 } as Meta
 
-export const Default = () => <Search />
+const defaultQueryClient = new QueryClient()
+
+export const Default = () => (
+  <QueryClientProvider client={defaultQueryClient}>
+    <Search />
+  </QueryClientProvider>
+)

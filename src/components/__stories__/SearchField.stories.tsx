@@ -1,19 +1,19 @@
 import { Meta, Story } from '@storybook/react'
 import { SearchField } from '../SearchField'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { worker } from '../../test-utils/browser'
+import { worker, github } from '../../test-utils/setupWorker'
 import { graphql } from 'msw'
 
 export default {
   component: SearchField,
   title: 'Components/SearchField',
-  decorators: [
-    Story => {
-      // Reset request handlers added in individual stories.
-      worker.resetHandlers()
-      return <Story />
-    },
-  ],
+  // decorators: [
+  //   Story => {
+  //     // Reset request handlers added in individual stories.
+  //     worker.resetHandlers()
+  //     return <Story />
+  //   },
+  // ],
 } as Meta
 
 const mockedQueryClient = new QueryClient({
@@ -40,10 +40,11 @@ export const Loading = () => (
 Loading.decorators = [
   (Story: Story<unknown>) => {
     worker.use(
-      graphql.query('GetRepos', (req, res, ctx) =>
+      github.query('GetRepos', (req, res, ctx) => {
+        console.log({ req, res, ctx })
         // Mock an infinite loading state.
-        res(ctx.delay('infinite'))
-      )
+        return res(ctx.delay('infinite'))
+      })
     )
     return <Story />
   },
@@ -57,7 +58,7 @@ export const Error = () => (
 Error.decorators = [
   (Story: Story<unknown>) => {
     worker.use(
-      graphql.query('GetRepos', (req, res, ctx) =>
+      github.query(/g/, (req, res, ctx) =>
         // Mock an error state.
         res.once(ctx.status(500))
       )

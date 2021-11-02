@@ -63,12 +63,7 @@ rules:
     - warn
     - argsIgnorePattern: '^_'
       varsIgnorePattern: '^_'
-  operator-linebreak:
-    - error
-    - before
-    - overrides:
-        '=': ignore
-  no-console: 2
+  no-console: off
   no-plusplus: off
   no-nested-ternary: off
   arrow-body-style: off

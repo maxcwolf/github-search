@@ -1,10 +1,5 @@
-// import { addDecorator } from '@storybook/react'
-// import { initializeWorker, mswDecorator } from 'msw-storybook-addon'
 import { ThemeProvider } from 'theme-ui'
 import { theme } from '../src/theme/theme-default'
-
-// initializeWorker()
-// addDecorator(mswDecorator)
 
 /**
  * @description Global Parameters for controls and actions
@@ -27,8 +22,8 @@ export const parameters = {
  */
 export const decorators = [
   Story => {
-    const { worker } = require('../src/test-utils/browser')
-    worker.resetHandlers()
+    // const { worker } = require('../src/test-utils/setupWorker')
+    // worker.resetHandlers()
     return (
       <ThemeProvider theme={theme}>
         <Story />
@@ -48,11 +43,12 @@ export const decorators = [
  *  but check whether there's an existing once, reusing it, if so.
  */
 const MSW_FILE = 'mockServiceWorker.js'
-// if (typeof global.process === 'undefined') {
-const { worker } = require('../src/test-utils/browser')
-worker.start({
-  serviceWorker: { url: `./${MSW_FILE}` },
-  findWorker: scriptURL => scriptURL.includes(MSW_FILE),
-  onUnhandledRequest: 'bypass',
-})
-// }
+if (typeof global.process === 'undefined') {
+  const { worker } = require('../src/test-utils/setupWorker')
+  worker.start({
+    serviceWorker: { url: `./${MSW_FILE}` },
+    findWorker: scriptURL => scriptURL.includes(MSW_FILE),
+    onUnhandledRequest: 'warn',
+  })
+  worker.printHandlers()
+}
