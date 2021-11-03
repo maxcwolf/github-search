@@ -2,7 +2,7 @@
   "name": "github-search",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://<username>.github.io/github-search/",
+  "homepage": "https://maxcwolf.github.io/github-search/",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -18,6 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -b main -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s ./public",
@@ -33,6 +35,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "gh-pages": "^3.2.3",
     "graphql": "^16.0.1",
     "graphql-request": "^3.6.1",
     "ramda": "^0.27.1",
