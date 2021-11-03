@@ -8,7 +8,7 @@ export const LayoutHeader = () => (
       <Avatar
         width={60}
         height={60}
-        src="octocat.png"
+        src={process.env.PUBLIC_URL + '/octocat.png'}
         onClick={() => onPageNavigate('search')}
         sx={{ ':hover': { cursor: 'pointer' } }}
       />
