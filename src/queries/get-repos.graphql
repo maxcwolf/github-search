@@ -7,10 +7,13 @@ query GetRepos($search_term: String!) {
           name
           owner {
             login
+            url
+            avatarUrl
           }
           stargazers {
             totalCount
           }
+          url
           description
           primaryLanguage {
             name

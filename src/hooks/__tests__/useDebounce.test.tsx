@@ -16,7 +16,7 @@ describe('useDebounce', () => {
 
   const setup = <T,>(value: T, delay: number) => renderHook(() => useDebounce(value, delay))
 
-  // TODO: Get this test working :(
+  // TODO: Get this test working :( input is being debounced correctly
   xit('should update value after specified delay', () => {
     const { result, rerender } = setup('', 500)
     expect(result.current).toBe('')

@@ -1,14 +1,8 @@
 /** @jsxImportSource theme-ui */
 import { useEffect, useRef, ChangeEvent } from 'react'
-import { BehaviorSubject } from 'rxjs'
 import { Flex, Input, Label, Radio, Text } from 'theme-ui'
 import { useObservable } from '../hooks/useObservable'
-
-// input observable to share state accross Search and SearchField
-export const input$ = new BehaviorSubject('')
-const toInput = input$.next.bind(input$)
-export const sort$ = new BehaviorSubject<'stars' | 'default'>('default')
-const toSort = input$.next.bind(sort$)
+import { input$, sort$, toInput, toSort } from '../observables'
 
 const onInputChange = (event: ChangeEvent<HTMLInputElement>) => toInput(event.target.value)
 
@@ -49,6 +43,7 @@ export const SearchField = () => {
               id="sort-default"
               name="default"
               value="default"
+              sx={{ color: 'primary' }}
               checked={sort === 'default'}
               onChange={onRadioChange}
             />
@@ -59,6 +54,7 @@ export const SearchField = () => {
               id="sort-stars"
               name="stars"
               value="stars"
+              sx={{ color: 'primary' }}
               checked={sort === 'stars'}
               onChange={onRadioChange}
             />
