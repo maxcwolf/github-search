@@ -28,11 +28,11 @@ jobs:
       - name: Generate queries
         run: yarn gen
 
-      - name: Build project
-        run: yarn deploy
-
       - name: Run tests
         run: yarn test
+
+      - name: Build project
+        run: yarn build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
