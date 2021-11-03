@@ -33,6 +33,8 @@ jobs:
 
       - name: Build project
         run: yarn build
+        env:
+          REACT_APP_GITHUB_KEY: ${{ secrets.GITHUB_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2

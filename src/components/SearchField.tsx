@@ -34,11 +34,10 @@ export const SearchField = () => {
         ref={inputRef}
         mb={2}
       />
-      {/* TODO: Add toast message when error */}
       <Flex sx={{ px: 3, flexDirection: 'row', justifyContent: 'end' }}>
         <Text pr={2}>Sort By:</Text>
         <Flex>
-          <Label htmlFor="sort-default" sx={{ fontSize: 1, fontWeight: 'thin', mx: 2 }}>
+          <Label htmlFor="sort-default" sx={{ fontSize: 1, fontWeight: 'thin', mx: 3 }}>
             <Radio
               id="sort-default"
               name="default"
@@ -49,7 +48,7 @@ export const SearchField = () => {
             />
             Default
           </Label>
-          <Label htmlFor="sort-stars" sx={{ fontSize: 1, fontWeight: 'thin', mx: 2 }}>
+          <Label htmlFor="sort-stars" sx={{ fontSize: 1, fontWeight: 'thin', mx: 3 }}>
             <Radio
               id="sort-stars"
               name="stars"
