@@ -1,31 +1,31 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { BehaviorSubject, Subject, Observable } from 'rxjs'
-import { useObservable, useLayoutObservable } from '../useObservable'
+import { useObservable } from '../useObservable'
 
-const setUp = <T,>(observable: Observable<T>, initialValue?: T) =>
+const setup = <T,>(observable: Observable<T>, initialValue?: T) =>
   renderHook(() => useObservable(observable, initialValue))
 
 describe('useObservable', () => {
   it('should return initial value on init', () => {
     const subject$ = new Subject()
-    const { result } = setUp(subject$, 'test')
+    const { result } = setup(subject$, 'test')
 
     expect(result.current).toBe('test')
   })
 
   it('should return the value of the BehaviorSubject when no initialValue passed', () => {
     const behaviorSubject$ = new BehaviorSubject('test')
-    const { result } = setUp(behaviorSubject$)
+    const { result } = setup(behaviorSubject$)
 
     expect(result.current).toBe('test')
   })
 
   it('should return undefined if Subject or Observable passed with no initialValue', () => {
     const subject$ = new Subject()
-    const { result: resultSub } = setUp(subject$)
+    const { result: resultSub } = setup(subject$)
 
     const observable$ = new Observable()
-    const { result: resultObs } = setUp(observable$)
+    const { result: resultObs } = setup(observable$)
 
     expect(resultSub.current).toBeUndefined()
     expect(resultObs.current).toBeUndefined()
@@ -33,7 +33,7 @@ describe('useObservable', () => {
 
   it('should return the most recent value of the observable', () => {
     const subject$ = new Subject()
-    const { result } = setUp(subject$, '')
+    const { result } = setup(subject$, '')
 
     act(() => {
       subject$.next('test')

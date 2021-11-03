@@ -1,17 +1,20 @@
 import { isEmpty, isNil } from 'ramda'
 import { Container, Divider, Flex, Spinner, Text } from 'theme-ui'
 import { useGetReposQuery } from '../__generated__/graphql'
-import { useObservable } from '../hooks/useObservable'
+import { useDebounce, useObservable } from '../hooks'
 import { SearchField, input$, sort$ } from '../components/SearchField'
 import { SearchResult } from '../components/SearchResult'
 
-const getSearchInput = (sort: string, input: string) =>
+const getSearchInput = (sort: 'stars' | 'default', input: string) =>
   sort === 'stars' ? `sort:stars ${input}` : input
 
 export const Search = () => {
   const input = useObservable(input$)
   const sort = useObservable(sort$)
-  const { data, isLoading } = useGetReposQuery({ search_term: getSearchInput(sort, input) })
+  const debouncedInput = useDebounce(input, 400)
+  const { data, isLoading } = useGetReposQuery({
+    search_term: getSearchInput(sort, debouncedInput),
+  })
 
   return (
     <Container sx={{ height: 'screenHeight' }}>

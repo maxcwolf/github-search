@@ -1,33 +1,29 @@
 /** @jsxImportSource theme-ui */
-import { useEffect, useRef, ChangeEvent, useState } from 'react'
+import { useEffect, useRef, ChangeEvent } from 'react'
 import { BehaviorSubject } from 'rxjs'
-import { map } from 'rxjs/operators'
 import { Flex, Input, Label, Radio, Text } from 'theme-ui'
 import { useObservable } from '../hooks/useObservable'
 
 // input observable to share state accross Search and SearchField
 export const input$ = new BehaviorSubject('')
 const toInput = input$.next.bind(input$)
-export const sort$ = new BehaviorSubject('default')
+export const sort$ = new BehaviorSubject<'stars' | 'default'>('default')
 const toSort = input$.next.bind(sort$)
+
+const onInputChange = (event: ChangeEvent<HTMLInputElement>) => toInput(event.target.value)
+
+const onRadioChange = (event: ChangeEvent<HTMLInputElement>) => toSort(event.currentTarget.value)
 
 export const SearchField = () => {
   const input = useObservable(input$)
   const sort = useObservable(sort$)
+
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   // Focus search input on init render
   useEffect(() => {
     inputRef?.current?.focus()
   }, [])
-
-  // useEffect(() => {
-  //   input$.pipe(map(val => (sort === 'stars' ? `sort:stars ${val}` : val)))
-  // })
-
-  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => toInput(event.target.value)
-
-  const onRadioChange = (event: ChangeEvent<HTMLInputElement>) => toSort(event.currentTarget.value)
 
   return (
     <Flex sx={{ flexDirection: 'column', mb: 2 }}>
