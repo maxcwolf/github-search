@@ -48,7 +48,7 @@ A simple albiet _slightly_ overengineered Github repository search created using
 
 - To run storybook locally, simply run `yarn storybook`.
 - To view the application's Chromatic instance, visit [here](https://www.chromatic.com/builds?appId=618068b3a4c14b003a93882c).
-- To view the deployed Storybook, visit [here](https://618068b3a4c14b003a93882c-anbeaimxwc.chromatic.com).
+- To view the deployed Storybook, visit [here](https://618068b3a4c14b003a93882c-dwudxechqm.chromatic.com).
 
 ### 🐛 Known Issues
 

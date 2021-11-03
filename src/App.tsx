@@ -26,7 +26,7 @@ export const App = () => {
       <ThemeProvider theme={theme}>
         <Layout>{page === 'search' ? <Search /> : <Detail />}</Layout>
       </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen />
+      <ReactQueryDevtools />
     </QueryClientProvider>
   )
 }

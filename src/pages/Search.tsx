@@ -47,8 +47,8 @@ export const Search = () => {
               result =>
                 // prettier-ignore
                 !isEmpty(result?.node)
-                // @ts-expect-error -- we are checking that result is not empty or nil, and there are default params for SearhResult
-                && !isNil(result?.node) && <SearchResult onClick={() => onPageNavigate('detail', result?.node)} key={`${result.node.name}-${result.node.owner?.login}`} name={result.node.name} ownerName={result.node.owner?.login || ''} starCount={result.node.stargazers?.totalCount} />
+                // @ts-expect-error -- we are checking that result is not empty or nil, generated types are bad, and there are default params for SearhResult
+                && !isNil(result?.node) && <SearchResult onClick={() => onPageNavigate('detail', result?.node)} key={`${result.node.name}-${result.node.owner?.login}`} repo={result.node} />
             )}
         </Flex>
       )}
