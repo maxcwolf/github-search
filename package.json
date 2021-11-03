@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s ./public",
-    "gen": "graphql-codegen --config codegen.yml -r dotenv/config && yarn prettier --write 'src/__generated__/graphql.ts'"
+    "gen": "graphql-codegen --config codegen.yml -r dotenv/config && yarn prettier --write 'src/__generated__/graphql.ts'",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -64,6 +65,8 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.2.6",
     "msw": "0.34.0",
     "prettier": "^2.4.1"
   },
