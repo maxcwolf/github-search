@@ -1,5 +1,6 @@
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import toast from 'react-hot-toast'
 import { ThemeProvider } from 'theme-ui'
 import { theme } from './theme/theme-default'
 import { Search } from './pages/Search'
@@ -8,7 +9,15 @@ import { useObservable } from './hooks'
 import { Detail } from './pages/Detail'
 import { page$ } from './observables'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error, query) => {
+      if (query.state.data !== undefined) {
+        toast.error(`Oops! Something went wrong: ${error}`)
+      }
+    },
+  }),
+})
 
 export const App = () => {
   const page = useObservable(page$)

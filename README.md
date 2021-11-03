@@ -18,6 +18,7 @@ A simple albiet _slightly_ overengineered Github repository search created using
 - [RxJS](https://rxjs.dev/) - for shared state managment
 - [Mock Service Worker](https://mswjs.io/) - for endpoint mocking (_NOTE: this is currently not working in storybook_, [see issues](#🐛-known-issue))
 - [GraphQL CodeGen](https://www.graphql-code-generator.com/) - for generating up to date queries, react-query hooks, and types from the GitHub API schema
+- [React Hot Toast](https://react-hot-toast.com/) - for error notifications
 
 ## 🗂️ Table of Contents
 
@@ -53,3 +54,4 @@ A simple albiet _slightly_ overengineered Github repository search created using
 
 - Mock Service Worker is unable to intercept the storybook endpoints. As such, many states that should be represented in stories have not been created. I have opened an issue with MSW and will fix this as soon as possible.
 - CodeGen is generating very weak types for the `GetRepos` query, as well as not generating individual types for the returned object properties.
+- Tests and valuable story states are lacking a bit. Once MSW is correctly intecepting queries, this will be easy to rectify.

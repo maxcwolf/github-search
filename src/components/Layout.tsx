@@ -9,6 +9,6 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => (
   <Container sx={{ height: 'screenHeight' }}>
     <LayoutHeader />
-    {children}
+    <Container sx={{ px: 3 }}>{children}</Container>
   </Container>
 )
