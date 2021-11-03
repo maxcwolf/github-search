@@ -1,6 +1,23 @@
 # :octocat: Github Search 🔍
 
-A simple github search.
+## Description
+
+A simple albiet _slightly_ overengineered Github repository search created using technologies and practices that will scale incredibly well as the application grows.
+
+### 💻 Technologies Used
+
+> I chose React Query since I have never used it and had an interest in learning it.
+
+- [React](https://reactjs.org/)
+- [GraphQL](https://graphql.org/)
+- [Theme-UI](https://theme-ui.com/) - for styled-system themeing and very simple components
+- [Storybook](https://storybook.js.org/) - for UI development
+- [Chromatic](https://www.chromatic.com/) - for UI tests
+- [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - for Unit & UX tests
+- [React Query](https://react-query.tanstack.com/) - for data fetching
+- [RxJS](https://rxjs.dev/) - for shared state managment
+- [Mock Service Worker](https://mswjs.io/) - for endpoint mocking (_NOTE: this is currently not working in storybook_, [see issues](#🐛-known-issue))
+- [GraphQL CodeGen](https://www.graphql-code-generator.com/) - for generating up to date queries, react-query hooks, and types from the GitHub API schema
 
 ## 🗂️ Table of Contents
 
@@ -9,6 +26,7 @@ A simple github search.
    1. [Running Locally](#🏃-running-locally)
 1. [Creating Stories](#📝-creating-stories)
 1. [Storybook & Chromatic](#📚-storybook-&-chromatic)
+1. [Known Issues](#🐛-known-issues)
 
 ## 🎉 Getting Started
 
@@ -30,3 +48,8 @@ A simple github search.
 - To run storybook locally, simply run `yarn storybook`.
 - To view the application's Chromatic instance, visit [here](https://www.chromatic.com/builds?appId=618068b3a4c14b003a93882c).
 - To view the deployed Storybook, visit [here](https://618068b3a4c14b003a93882c-anbeaimxwc.chromatic.com).
+
+### 🐛 Known Issues
+
+- Mock Service Worker is unable to intercept the storybook endpoints. As such, many states that should be represented in stories have not been created. I have opened an issue with MSW and will fix this as soon as possible.
+- CodeGen is generating very weak types for the `GetRepos` query, as well as not generating individual types for the returned object properties.
