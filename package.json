@@ -2,6 +2,7 @@
   "name": "github-search",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://<username>.github.io/github-search/",
   "browserslist": {
     "production": [
       ">0.2%",
