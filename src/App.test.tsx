@@ -3,6 +3,6 @@ import { App } from './App'
 
 test('renders learn react link', () => {
   render(<App />)
-  const searchText = screen.getByText(/Search/i)
+  const searchText = screen.getByText(/RepoSearch/i)
   expect(searchText).toBeInTheDocument()
 })
