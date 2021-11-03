@@ -5,7 +5,7 @@ import { useDebounce, useObservable } from '../hooks'
 import { SearchField, input$, sort$ } from '../components/SearchField'
 import { SearchResult } from '../components/SearchResult'
 
-const getSearchInput = (sort: 'stars' | 'default', input: string) =>
+export const getSearchInput = (sort: 'stars' | 'default', input: string) =>
   sort === 'stars' ? `sort:stars ${input}` : input
 
 export const Search = () => {

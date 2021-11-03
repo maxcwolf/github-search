@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react'
 import { SearchField } from '../SearchField'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { worker, github } from '../../test-utils/setupWorker'
-import { graphql } from 'msw'
+// import { graphql } from 'msw'
 
 export default {
   component: SearchField,
