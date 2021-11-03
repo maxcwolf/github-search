@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Generate queries
+        run: yarn gen
+
       - name: Build project
         run: yarn build
 
